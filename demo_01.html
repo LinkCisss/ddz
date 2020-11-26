@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function select1(){
+				var username = $("username").value;
+				var pwd = $("pwd").value;
+				var username_rul = /^[a-zA-Z]\w{3,7}$/;
+				var pwd_rul = /^\d{6}$/;
+				var span1 = $("span1");
+				var span2 = $("span2");
+				if(username_rul.test(username)){
+					span1.innerHTML = "用户名符合条件";
+				}else{
+					span1.innerHTML = "用户名不符合条件";
+				}
+				if(pwd_rul.test(pwd)){
+					span2.innerHTML = "密码符合条件";
+				}else{
+					span2.innerHTML = "密码不符合条件";
+				}
+				
+			}
+			function $(id){
+				return document.getElementById(id);
+			}
+		</script>
+	</head>
+	<body>
+		用户名：<input type="text" name="username" id="username" /><span id="span1" class="span1"></span><br>
+		密码：<input type="password" name="pwd" id="pwd" /><span id="span2" class="span1"></span><br>
+		<input type="submit" name="submit" id="submit" onclick="select1()" value="注册" />
+	</body>
+</html>

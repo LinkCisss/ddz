@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>购物车</title>
+		<style type="text/css">
+			#sub{
+				display: inline-block;
+				width: 20px;
+			}
+		</style>
+		<script type="text/javascript">
+			function add(){
+				var sub = $("sub").value;
+				sub = parseInt(sub) + 1;
+				$("sub").value = sub;
+			}
+			function sub(){
+				var sub = $("sub").value;
+				sub = parseInt(sub) - 1;
+				if(sub <= 0){
+					sub = 1;
+				}
+				$("sub").value = sub;
+			}
+			function $(id){
+				return document.getElementById(id);
+			}
+		</script>
+	</head>
+	<body>
+		<button type="button" onclick="sub()">-</button>
+		<input type="text" name="sub" id="sub" value="1" readonly="readonly"/>
+		<button type="button" onclick="add()">+</button>
+	</body>
+</html>

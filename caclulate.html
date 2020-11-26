@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>caclulate</title>
+		<script >
+			var str = '';
+			var sum = 0;
+			function cal(val){
+				str += val;
+				$("caclulate").value = str;
+			}
+			function result(){
+				var arr = str.split("+");
+				
+				for(i = 0; i < arr.length; i++){
+					sum += parseInt(arr[i]);
+				}
+				$("results").value = sum;
+				sum = 0;
+				str = '';
+			}
+			function $(id){
+				return document.getElementById(id);
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" onclick="cal(this.value)" value="1" />
+		<input type="button" onclick="cal(this.value)" value="2" />
+		<input type="button" onclick="cal(this.value)" value="3" />
+		<input type="button" onclick="cal(this.value)" value="4" />
+		<input type="button" onclick="cal(this.value)" value="5" />
+		<input type="button" onclick="cal(this.value)" value="6" />
+		<input type="button" onclick="cal(this.value)" value="7" />
+		<input type="button" onclick="cal(this.value)" value="8" />
+		<input type="button" onclick="cal(this.value)" value="9" />
+		<input type="button" onclick="cal(this.value)" value="0" /><br>
+		
+		<input type="button" name="add" id="add" onclick="cal(this.value)" value="+" />
+
+		计算：<input type="text" name="caclulate" id="caclulate" value="" /><br>
+		<button type="button" onclick="result()">=</button><br>
+		结果为：<input type="text" name="results" id="results" onclick="result()" value="" />
+	</body>
+</html>

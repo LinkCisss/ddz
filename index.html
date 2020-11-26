@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>斗地主</title>
+		<script type="text/javascript">
+			const THREE = 0;
+			const FOUR = 1;
+			const FIVE = 2;
+			const SIX = 3;
+			const SEVEN = 4;
+			const EIGHT = 5;
+			const NINE = 6;
+			const TEN = 7;
+			const JACK = 8;
+			const QUEEN = 9;
+			const KING = 10;
+			const ACE = 11;
+			const TWO = 12;
+			const BLACK = 13;
+			const COLOR = 14;
+			
+			const SPADE = 0;
+			const HEART = 1;
+			const CLUB = 2;
+			const DIAMOND = 3;
+			const JOKER = 4;
+			
+			// 初始化花色
+			var color = ['黑桃', "红桃", "梅花", "方片", ""];
+			// 初始化牌面大小
+			var num = ['3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A', '2', '小王', '大王'];
+		
+			// 初始化玩家
+			var players = [];
+			var player1 = {id : 1,name : '张三',cards1 : []};
+			players.push(player1);
+			var player2 = {id : 2,name : '李四',cards1 : []};
+			players.push(player2);
+			var player3 = {id : 3,name : '王二麻子',cards1 : []};
+			players.push(player3);
+			// console.log(players[0]);
+			function creat(){
+				var cards = [];
+				for(i = 0; i < 13; i++){
+					card = {rank : color[SPADE], suit : num[i]};
+					cards.push(card);
+					card = {rank : color[HEART], suit : num[i]};
+					cards.push(card);
+					card = {rank : color[CLUB], suit : num[i]};
+					cards.push(card);
+					card = {rank : color[DIAMOND], suit : num[i]};
+					cards.push(card);
+				}
+				card = {rank : color[JOKER], suit : num[BLACK]};
+				cards.push(card);
+				card = {rank : color[JOKER], suit : num[COLOR]};
+				cards.push(card);
+				return cards;
+			}
+			var cards = creat();
+			// console.log(`${player1.id},${player1.name},${player1.card}`);
+			// console.log(`${card.rank},${card.suit}`);
+			function shuffleCard(cards){
+				for (let i = cards.length; i; i--) {
+				        let j = Math.floor(Math.random() * i);
+				        [cards[i - 1], cards[j]] = [cards[j], cards[i - 1]];
+				    }
+				    return cards;
+			}
+		
+			var cards = shuffleCard(cards);
+			
+			function sendCard(){
+				for(i = 0; i < cards.length - 3; i++){
+					// console.log(cards[i].rank);
+					players[i % 3].cards1.push(cards[i]);
+				}
+				return players;
+			}
+			var players = sendCard();
+			function send(){
+				var s1 = "玩家：" + players[0].name + '  ' + '手牌为：' + ' ';
+				var s2 = "玩家：" + players[1].name + '  ' + '手牌为：' + ' ';
+				var s3 = "玩家：" + players[2].name + '  ' + '手牌为：' + ' ';
+			
+			for(i = 0;i < players[0].cards1.length; i++){
+				 s1 += players[0].cards1[i].rank + players[0].cards1[i].suit + ' ';
+			}
+			console.log(s1);
+			// document.write(s1);
+			
+			for(i = 0;i < players[0].cards1.length; i++){
+				s2 += players[1].cards1[i].rank + players[1].cards1[i].suit + ' ';
+			}
+			console.log(s2);
+			// document.write(s2);
+			for(i = 0;i < players[0].cards1.length; i++){
+				s3 += players[2].cards1[i].rank + players[2].cards1[i].suit + ' ';
+			}
+			console.log(s3);
+			// document.write(s3);
+			console.log("底牌为：");
+			console.log(`${cards[cards.length - 3].rank} ${cards[cards.length - 3].suit}`);
+			console.log(`${cards[cards.length - 2].rank} ${cards[cards.length - 2].suit}`);
+			console.log(`${cards[cards.length - 1].rank} ${cards[cards.length - 1].suit}`);
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="send()">发牌</button>
+	</body>
+</html>
